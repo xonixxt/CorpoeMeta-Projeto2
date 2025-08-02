@@ -67,4 +67,32 @@ public class Gym {
         }
         throw new IllegalArgumentException("Member not found with ID: " + memberToDeactivate.getId());
     }
+
+    public void updateMemberInfo(Member memberToUpdate, Integer newAge, String newPhone, String newEmail) {
+        for (Member member : members) {
+            if (member.getId() == memberToUpdate.getId()) {
+                boolean updated = false;
+
+                if (newAge != null && member.getAge() != newAge) {
+                    member.setAge(newAge);
+                    updated = true;
+                }
+                if (newPhone != null && !member.getPhone().equals(newPhone)) {
+                    member.setPhone(newPhone);
+                    updated = true;
+                }
+                if (newEmail != null && !member.getEmail().equals(newEmail)) {
+                    member.setEmail(newEmail);
+                    updated = true;
+                }
+                if (!updated) {
+                    throw new IllegalArgumentException("No new information provided to update.");
+                }
+                System.out.println("Member info updated successfully.");
+                return;
+            }
+        }
+        throw new IllegalArgumentException("Member not found with ID: " + memberToUpdate.getId());
+    }
+
 }

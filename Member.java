@@ -3,8 +3,8 @@ public class Member {
     private static int nextId = 0;
     private String name;
     private int age;
-    private final String email;
-    private final String phone;
+    private String email;
+    private String phone;
     private boolean active;
 
     public Member(String name, int age, String email, String phone) {
@@ -70,5 +70,17 @@ public class Member {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public void setAge(int age){
+        this.age = age;
+    }
+
+    public void setPhone(String phone){
+        this.phone = phone;
+    }
+
+    public void setEmail(String email){
+        this.email = email;
     }
 }
