@@ -32,7 +32,6 @@ public class Member {
         }
     }
 
-    // Improve
     private void validateEmail(String email) {
         if (email == null || !email.contains("@")) {
             throw new IllegalArgumentException("Insert a valid email.");
@@ -63,5 +62,13 @@ public class Member {
 
     public String getPhone() {
         return phone;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }
