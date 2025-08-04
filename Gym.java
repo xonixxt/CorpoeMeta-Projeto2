@@ -13,15 +13,19 @@ public class Gym {
         System.out.println("Member added successfully. ID: " + memberToAdd.getId());
     }
 
-    public void deleteMember(Member memberToDelete) {
-        for (int i = 0; i < members.size(); i++) {
-            if (members.get(i).getId() == memberToDelete.getId()) {
-                members.remove(i);
-                System.out.println("Member removed successfully. ID: " + memberToDelete.getId());
-                return;
+    public Member findMemberById(int id){
+        for (Member member : members){
+            if (member.getId() == id){
+                return member;
             }
         }
-        throw new IllegalArgumentException("Member not found with ID: " + memberToDelete.getId());
+        throw new IllegalArgumentException("Member not found.");
+    }
+
+    public void deleteMember(Member memberToDelete) {
+        Member member = findMemberById(memberToDelete.getId());
+        members.remove(member);
+        System.out.println("Member removed successfully. ID: " + member.getId());
     }
 
     public void listMembers(){
@@ -41,58 +45,42 @@ public class Gym {
     }
 
     public void activateMember(Member memberToActivate){
-        for (Member member : members){
-            if (member.getId() == memberToActivate.getId()){
-                if (member.isActive()){
-                    throw new IllegalArgumentException("Member already activated. ID: " + member.getId());
-                }
-                member.setActive(true);
-                System.out.println("Member activated successfully. ID: " + member.getId());
-                return;
-            }
+        Member member = findMemberById(memberToActivate.getId());
+        if (member.isActive()){
+            throw new IllegalArgumentException("Member already activated. ID: " + member.getId());
         }
-        throw new IllegalArgumentException("Member not found with ID: " + memberToActivate.getId());
+        member.setActive(true);
+        System.out.println("Member activated successfully. ID: " + member.getId());
     }
 
     public void deactivateMember(Member memberToDeactivate){
-        for (Member member : members){
-            if (member.getId() == memberToDeactivate.getId()){
-                if (!member.isActive()){
-                    throw new IllegalArgumentException("Member already inactive. ID: " + member.getId());
-                }
-                member.setActive(false);
-                System.out.println("Member deactivated successfully. ID: " + member.getId());
-                return;
-            }
+        Member member = findMemberById(memberToDeactivate.getId());
+        if (!member.isActive()){
+            throw new IllegalArgumentException("Member already inactive. ID: " + member.getId());
         }
-        throw new IllegalArgumentException("Member not found with ID: " + memberToDeactivate.getId());
+        member.setActive(false);
+        System.out.println("Member deactivated successfully. ID: " + member.getId());
     }
 
     public void updateMemberInfo(Member memberToUpdate, Integer newAge, String newPhone, String newEmail) {
-        for (Member member : members) {
-            if (member.getId() == memberToUpdate.getId()) {
-                boolean updated = false;
+        Member member = findMemberById(memberToUpdate.getId());
+        boolean updated = false;
 
-                if (newAge != null && member.getAge() != newAge) {
-                    member.setAge(newAge);
-                    updated = true;
-                }
-                if (newPhone != null && !member.getPhone().equals(newPhone)) {
-                    member.setPhone(newPhone);
-                    updated = true;
-                }
-                if (newEmail != null && !member.getEmail().equals(newEmail)) {
-                    member.setEmail(newEmail);
-                    updated = true;
-                }
-                if (!updated) {
-                    throw new IllegalArgumentException("No new information provided to update.");
-                }
-                System.out.println("Member info updated successfully.");
-                return;
-            }
+        if (newAge != null && member.getAge() != newAge) {
+            member.setAge(newAge);
+            updated = true;
         }
-        throw new IllegalArgumentException("Member not found with ID: " + memberToUpdate.getId());
+        if (newPhone != null && !member.getPhone().equals(newPhone)) {
+            member.setPhone(newPhone);
+            updated = true;
+        }
+        if (newEmail != null && !member.getEmail().equals(newEmail)) {
+            member.setEmail(newEmail);
+            updated = true;
+        }
+        if (!updated) {
+            throw new IllegalArgumentException("No new information provided to update.");
+        }
+        System.out.println("Member info updated successfully.");
     }
-
 }
