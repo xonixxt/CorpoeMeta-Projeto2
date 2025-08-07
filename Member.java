@@ -6,6 +6,7 @@ public class Member {
     private String email;
     private String phone;
     private boolean active;
+    private Plan plan;
 
     public Member(String name, int age, String email, String phone) {
         validateName(name);
@@ -18,6 +19,7 @@ public class Member {
         this.phone = phone;
         this.id = ++nextId;
         this.active = false;
+        this.plan = null;
     }
 
     private void validateName(String name) {
@@ -82,5 +84,21 @@ public class Member {
 
     public void setEmail(String email){
         this.email = email;
+    }
+
+    public Plan getPlan() {
+        return plan;
+    }
+
+    public void setPlan(Plan plan) {
+        this.plan = plan;
+    }
+
+    public boolean hasPlan() {
+        return this.plan != null;
+    }
+
+    public void removePlan() {
+        this.plan = null;
     }
 }

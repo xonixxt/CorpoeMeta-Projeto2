@@ -83,4 +83,54 @@ public class Gym {
         }
         System.out.println("Member info updated successfully.");
     }
+
+    public void assignPlanToMember(int memberId, Plan plan) {
+        Member member = findMemberById(memberId);
+        if (!member.isActive()) {
+            throw new IllegalArgumentException("Cannot assign plan to inactive member. ID: " + memberId);
+        }
+        if (member.hasPlan()) {
+            throw new IllegalArgumentException("Member already has a plan. ID: " + memberId);
+        }
+        member.setPlan(plan);
+        System.out.println("Plan assigned successfully to member ID: " + memberId);
+    }
+
+    public void changePlan(int memberId, Plan newPlan) {
+        Member member = findMemberById(memberId);
+        if (!member.isActive()) {
+            throw new IllegalArgumentException("Cannot change plan for inactive member. ID: " + memberId);
+        }
+        if (!member.hasPlan()) {
+            throw new IllegalArgumentException("Member does not have a plan to change. ID: " + memberId);
+        }
+        member.setPlan(newPlan);
+        System.out.println("Plan changed successfully for member ID: " + memberId);
+    }
+
+    public void removePlanFromMember(int memberId) {
+        Member member = findMemberById(memberId);
+        if (!member.isActive()) {
+            throw new IllegalArgumentException("Cannot remove plan from inactive member. ID: " + memberId);
+        }
+        if (!member.hasPlan()) {
+            throw new IllegalArgumentException("Member does not have a plan to remove. ID: " + memberId);
+        }
+        member.removePlan();
+        System.out.println("Plan removed successfully from member ID: " + memberId);
+    }
+
+    public void getMemberPlanInfo(int memberId) {
+        Member member = findMemberById(memberId);
+        if (!member.hasPlan()) {
+            System.out.println("Member ID " + memberId + " does not have a plan.");
+            return;
+        }
+        Plan plan = member.getPlan();
+        System.out.println("Plan info for member ID " + memberId + ":");
+        System.out.println("Plan Name: " + plan.getName());
+        System.out.println("Price: " + plan.getPrice());
+        System.out.println("Duration (months): " + plan.getDurationMonths());
+        System.out.println("Status: " + (plan.isActive() ? "Active" : "Inactive"));
+    }
 }

@@ -8,7 +8,6 @@ public class Plan {
 
     public Plan(String name, double price, int durationMonths){
         validateName(name);
-
         this.id = ++nextId;
         this.name = name;
         this.price = price;
@@ -20,5 +19,29 @@ public class Plan {
         if (name == null || name.trim().length() < 3){
             throw new IllegalArgumentException("Insert a valid name with three characters or more.");
         }
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public int getDurationMonths() {
+        return durationMonths;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        this.isActive = active;
     }
 }
