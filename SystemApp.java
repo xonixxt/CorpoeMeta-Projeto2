@@ -2,33 +2,33 @@ public class SystemApp {
     public static void main(String[] args) {
         Gym gym = new Gym();
 
-        Member member1 = new Member("Johnny Saint", 18, "xonixxt@email.com", "83987654321");
-        Member member2 = new Member("Maria Luiza", 17, "maluxxt@email.com", "83998765432");
+        Person person1 = new Person("Johnny Saint", 18, "xonixxt@email.com", "83987654321");
+        Person person2 = new Person("Maria Luiza", 17, "maluxxt@email.com", "83998765432");
 
-        gym.addMember(member1);
-        gym.addMember(member2);
+        gym.addMember(person1);
+        gym.addMember(person2);
 
-        gym.activateMember(member1);
-        gym.activateMember(member2);
+        gym.activateMember(person1);
+        gym.activateMember(person2);
 
         Plan planBasic = new Plan("Basic", 120.0, 3);
         Plan planPremium = new Plan("Premium", 300.0, 6);
 
-        gym.assignPlanToMember(member1.getId(), planBasic);
-        gym.assignPlanToMember(member2.getId(), planPremium);
+        gym.assignPlanToMember(person1.getId(), planBasic);
+        gym.assignPlanToMember(person2.getId(), planPremium);
 
         gym.listMembers();
 
-        gym.getMemberPlanInfo(member1.getId());
-        gym.getMemberPlanInfo(member2.getId());
+        gym.getMemberPlanInfo(person1.getId());
+        gym.getMemberPlanInfo(person2.getId());
 
-        gym.updateMemberInfo(member1, 19, "83976543210", "xonixxt.oficial@email.com");
+        gym.updateMemberInfo(person1, 19, "83976543210", "xonixxt.oficial@email.com");
 
-        gym.getMemberPlanInfo(member1.getId());
+        gym.getMemberPlanInfo(person1.getId());
 
-        gym.deactivateMember(member2);
+        gym.deactivateMember(person2);
 
-        gym.removePlanFromMember(member2.getId());
+        gym.removePlanFromMember(person2.getId());
 
         gym.listMembers();
     }
