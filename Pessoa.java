@@ -1,6 +1,7 @@
 public class Pessoa {
     private static int proximoId = 0;
-    private final int id;
+    private int id;
+    private int nextId = 0;
     private String nome;
     private int idade;
     private String email;
@@ -12,7 +13,7 @@ public class Pessoa {
         validarIdade(idade);
         validarEmail(email);
         validarTelefone(telefone);
-        this.id = ++proximoId;
+        this.id = ++nextId;
         this.nome = nome;
         this.idade = idade;
         this.email = email;
